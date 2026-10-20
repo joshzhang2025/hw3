@@ -86,10 +86,25 @@ int main(int argc, char* argv[])
     print(head);
 
     // Test out your linked list code
+    Node* smaller = NULL;
+    Node* larger = NULL;
+    llpivot(head, smaller, larger, 8);
+    cout << "Values <= 8: ";
+    print(smaller);
+    cout << "Values > 8: ";
+    print(larger);
 
+    dealloc(smaller);
+    dealloc(larger);
 
+    function<bool(int)> removeOdd = [](int value) {
+      return value % 2 != 0;
+    };
+    Node* filtered = llfilter(readList(argv[1]), removeOdd);
+    cout << "After removing odd values: ";
+    print(filtered);
+    dealloc(filtered);
 
-    
     return 0;
 
 }

@@ -77,12 +77,23 @@ Node* llfilter(Node* head, Comp pred);
 // implement the above function now.
 //*****************************************************************************
 
+
 template <typename Comp>
 Node* llfilter(Node* head, Comp pred)
 {
     //*********************************************
     // Provide your implementation below
     //*********************************************
+    if (head == NULL) {
+      return NULL;
+    }
+    Node* filteredNext = llfilter(head->next, pred);
+    if (pred(head->val)) {
+      delete head;
+      return filteredNext;
+    }
+    head->next = filteredNext;
+    return head;
 
 
 }
